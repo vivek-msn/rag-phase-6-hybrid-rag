@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+rag_chroma_db/
+chroma_db/
+practice/
