@@ -1,48 +1,58 @@
 # RAG Phase 6 — Hybrid Search & Reranking
 
-A Retrieval-Augmented Generation (RAG) project built with Python that combines vector search, BM25 keyword search, hybrid ranking, cross-encoder reranking, and Gemini for grounded answer generation.
+A production-style Retrieval-Augmented Generation (RAG) pipeline built with Python that combines dense vector search, BM25 keyword retrieval, hybrid ranking, cross-encoder reranking, and Gemini for grounded answer generation.
 
-## 🚀 Project Overview
+## 🚀 What I Built
 
-This project demonstrates a complete RAG pipeline:
+This project implements an end-to-end RAG pipeline designed to improve retrieval quality before sending context to an LLM.
 
-1. Document chunking
-2. Embedding generation
-3. Vector storage with ChromaDB
-4. Semantic vector search
-5. BM25 keyword search
-6. Hybrid search
-7. Cross-encoder reranking
-8. Context construction
-9. Gemini-based answer generation
-10. Retrieval and answer evaluation
+The system combines:
 
-## 🏗️ RAG Pipeline
+- Document chunking
+- Sentence Transformer embeddings
+- ChromaDB vector storage
+- Semantic vector search
+- BM25 keyword search
+- Hybrid retrieval
+- Cross-encoder reranking
+- Context construction
+- Gemini-based answer generation
+- Retrieval evaluation
+- Answer and groundedness evaluation
+
+## 🏗️ Architecture
 
 ```text
-Documents
-    ↓
-Chunking
-    ↓
-Embeddings
-    ↓
-ChromaDB
-    ↓
-┌───────────────────────┐
-│                       │
-│  Vector Search        │
-│  BM25 Search          │
-│                       │
-└───────────┬───────────┘
-            ↓
-      Hybrid Ranking
-            ↓
-    Cross-Encoder Reranking
-            ↓
-       Top Results
-            ↓
-      Context Building
-            ↓
-        Gemini LLM
-            ↓
-        Final Answer
+                    Documents
+                        │
+                        ▼
+                    Chunking
+                        │
+                        ▼
+                   Embeddings
+                        │
+                        ▼
+                    ChromaDB
+                        │
+             ┌──────────┴──────────┐
+             ▼                     ▼
+       Vector Search           BM25 Search
+             │                     │
+             └──────────┬──────────┘
+                        ▼
+                  Hybrid Ranking
+                        │
+                        ▼
+              Cross-Encoder Reranking
+                        │
+                        ▼
+                  Top Relevant Chunks
+                        │
+                        ▼
+                 Context Building
+                        │
+                        ▼
+                    Gemini LLM
+                        │
+                        ▼
+                   Final Answer
