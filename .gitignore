@@ -5,3 +5,4 @@ __pycache__/
 rag_chroma_db/
 chroma_db/
 practice/
+pdf_chatbot/pdf_chroma_db/
